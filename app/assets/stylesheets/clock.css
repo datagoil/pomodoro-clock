@@ -1,27 +1,38 @@
+* {
+  box-sizing: border-box;
+}
+img {
+    width: 40px;
+    margin-top: 10px;
+
+}
 body {
     background-color: grey;
 }
-.title {
+table {
+    color: white;
+    width:100%
+}
+h1 {
     margin-top: 60px;
     font-weight: bold;
 }
 .container {
-outline: 1px solid #67466f;
-max-height: 960px;
-width:  960px;
-margin: auto;
-font-size: 0;
-margin-top: 20px;
-overflow: hidden;
+  width: 35%;
+  margin: auto;
+
 }
-.grid {
+.control {
 outline: 1px solid #67466f;
-display: inline-block;
-vertical-align: top;
-margin:0;
-padding:0;
-border:none;
+height: 12%;
+margin-bottom: 10px;
+  background-color: black;
+
+
 }
-button {
-    margin: 10px;
+.countdown {
+outline: 1px solid #67466f;
+height: 35%;
+  background-color: black;
+
 }

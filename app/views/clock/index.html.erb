@@ -4,25 +4,40 @@
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 </head>
 <body>
-    <div class="title"><center><h1>Pomodoro Clock</h1></center></div>
-    <body>
-    <div>Registration closes in <span id="time"></span> minutes!</div>
-       <table>
+    <div class="container">
+        <div><center><h1>Pomodoro Clock</h1></center></div>
+    <div class="control">
+        <table>
+            <tr>
+                <th>Session</th>
+                <th>Break</th>
+            </tr>
+            <tr>
+                <th>JS for session time here</th>
+                <th>JS for break time here</th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="countdown">
+        <table>
   <tr>
-    <th></th>
-    <th scope="col">Saturday</th>
-    <th scope="col">Sunday</th>
+    <th><img src="/assets/start-button.png" /></th>
+    <th><img src="/assets/refresh-button.png" /></th>
   </tr>
   <tr>
-    <th scope="row">Temperature</th>
-    <td>73</td>
-    <td>81</td>
-<td colspan="2">Out of Town</td>
-<td rowspan="3">Relax</td>
-  </tr>
-</table>
+    <th colspan="2">Session</th>
+    </tr>
+    <tr>
+    <th colspan="2">Registration closes in <span id="time"></span> minutes!</th>
+    </tr>
 
-
+      <tr>
+    <th scope="col"><img src="/assets/pause-button.png" /></th>
+    <th scope="col"><img src="/assets/stop-button.png" /></th>
+ </table>
+</div>
+</div>
 <%= javascript_include_tag('main.js') %>
 </body>
 </html>

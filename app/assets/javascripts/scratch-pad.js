@@ -24,18 +24,7 @@ $('#img').on('click', function(){})
 function getSession(25) {
   var minutes = new Date('00/00/0000 25:00 AM');
 }
-/**function to get break minutes from user**/
-function getBreak(5) {
-  var minutes
-}
-/**function to start countdown. takes session and break minutes**/
-function countdown(getSession, getBreak) {
-  var time = make.time(getSession)
-  when time = 0:00 toggle break/session  and
-  make.time(break)
-  countdown and when time = 0:00, toggle break/session.
-  repeat till stop
-}
+
 
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
@@ -84,4 +73,45 @@ function tick() {
 /**updates timer each second**/
 function updateTimer() {
   timer.innerHTML = totalMinutes;
+}
+my code that doesn't work
+
+version 1:
+
+var minutes;
+function setSessionMinutes() {
+  var sessionMinutes = prompt("Enter Session minutes", "0");
+  var minutes = localStorage.setItem('minutes', sessionMinutes);
+  minutes = parseInt(minutes, "10");
+  return minutes * 60;
+}
+
+
+function startCountdown () {
+  setSessionMinutes();
+  return minutes + 10;
+}
+$(document).ready(function() {
+  display.text(startCountdown() + ":";
+} );
+
+
+version 2:
+function setBreakMinutes() {
+  var breakMinutes = prompt("Enter Break Minutes", "0");
+  localStorage.setItem('minutes', breakMinutes);
+}
+
+version 3:
+/**function to get break minutes from user**/
+function getBreak(5) {
+  var minutes
+}
+/**function to start countdown. takes session and break minutes**/
+function countdown(getSession, getBreak) {
+  var time = make.time(getSession)
+  when time = 0:00 toggle break/session  and
+  make.time(break)
+  countdown and when time = 0:00, toggle break/session.
+  repeat till stop
 }

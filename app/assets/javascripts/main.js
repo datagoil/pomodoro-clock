@@ -1,3 +1,17 @@
+
+function startCountdown (minutes) {
+   var minutes = minutes * 60;
+   return minutes;
+
+}
+jQuery(function ($) {
+  var sessionMinutes = prompt("Enter Session minutes", "0");
+  var breakMinutes = prompt("Enter Break Minutes", "0");
+  sessionMinutes = parseInt(sessionMinutes);
+  breakMinutes = parseInt(breakMinutes);
+  display.text(startCountdown(sessionMinutes) + ":" + startCountdown(breakMinutes);
+} );
+
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
@@ -17,6 +31,8 @@ function startTimer(duration, display) {
 
 jQuery(function ($) {
     var fiveMinutes = 60 * 5,
-        display = $('#time');
+        display = $('#timer');
     startTimer(fiveMinutes, display);
+
 });
+

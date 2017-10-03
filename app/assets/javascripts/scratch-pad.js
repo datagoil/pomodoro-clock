@@ -128,5 +128,36 @@ function changeNum() {
 changeNum();
 
 
+//while(minutes <= 0) {
+    seconds = 59;
+
+    while(seconds <= 0) {
+                        var readOut = minutes + ":" + seconds;
+
+          $('#countdown').text(readOut);
+        seconds--;
+    }
+//    minutes = minutes - 1;
+//};
+};
+
+/**
+while (minutes > 0) {
+        minutes = minutes - 1;
+        seconds = 59;
+        //alert(minutes);
+        while (seconds >= 0) {
+          seconds = seconds - 1;
+              var readOut = minutes + ":" + seconds;
+
+          $('#countdown').text(readOut);
+        };
+      };
+          $('#countdown').text(readOut);
+
+};
+
+;**/
+
 
 

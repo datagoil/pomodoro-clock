@@ -2,55 +2,70 @@ $(document).ready(function(){
    $(".upS").off().on('click', function() {     //off() b/c was increasing by 2
            var oldVal = parseInt($("#numS").text(), 10);
         if (oldVal <= 0)
-          return
+          return;
         else
         $('#numS').text(oldVal + 1);
     });
    $(".up").off().on('click', function() {
            var oldVal = parseInt($("#numB").text(), 10);
         if (oldVal <= 0)
-          return
+          return;
         else
         $('#numB').text(oldVal + 1);
     });
    $(".downS").off().on('click', function() {
            var oldVal = parseInt($("#numS").text(), 10);
         if (oldVal <= 0)
-          return
+          return;
         else
           $('#numS').text(oldVal - 1);
     });
    $(".down").off().on('click', function() {
            var oldVal = parseInt($("#numB").text(), 10);
-        if (oldVal <= 0)
-          return
+        if (oldVal <= 0) {
+          return;
+        }
         else
         $('#numB').text(oldVal - 1);
     });
     $("#start").on('click', function() {
           $('#numS').startSession();
+
     });
-});
-
 $.fn.startSession = function() {
-    var seconds = 00;
-    var minutes = parseInt(this.text(), 10)
+    var seconds = 0;
+    var minutes = parseInt(this.text(), 10);
+    $(seconds).formatMinSec();
+    $(minutes).formatMinSec();
     var readOut = minutes + ":" + seconds;
-      /**function setInterval() {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+    $('#countdown').text(readOut);
+    alert(readOut);
+    setInterval(countDown(minutes, seconds), 1000);
 
-
-
-          if (--timer < 0) {
-            timer = duration;
-          }
-    ;
 };
-};**/
-    $('#countdown').text(readOut)
+function countDown (min, sec) {
+    var readOut = min + ":" + sec;
+    if (sec > 0) {
+      sec = sec - 1;
+      $('#countdown').text(readOut);
+    }
+    else if (sec = 0) {
+        min = min - 1;
+        sec = 59;
+        $('#countdown').text(readOut);
+    }
+    /**else if (minutes = 0) {
+
+    }**/
 };
+
+function formatMinSec (aValue) {
+    if (aValue < 10) {
+      aValue = "0" + aValue;
+    }
+    alert("code reached formatMinSec function");
+};
+
+});
 

@@ -36,15 +36,10 @@ $(document).ready(function(){
 
     });
 $.fn.startSession = function() {
-    var seconds = 0;
-    var minutes = parseInt(this.text(), 10);
-    var readOut = formatToTens(minutes) + ":" + formatToTens(seconds);
-
-
-    setInterval(function down (min, sec) {
+    setInterval(function down () {
         alert("what the hell");
-        newSec = parseInt(sec, 10);
-        newMin = parseInt(min, 10);
+        var newSec = 0;
+        var newMin = parseInt($('#numS').text(), 10);
         if (newSec > 0) {
           newSec = newSec - 1;
           var readOut = formatToTens(newMin) + ":" + formatToTens(newSec);

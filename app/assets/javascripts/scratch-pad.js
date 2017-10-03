@@ -115,3 +115,14 @@ function countdown(getSession, getBreak) {
   countdown and when time = 0:00, toggle break/session.
   repeat till stop
 }
+
+container = document.getElementById('numS');
+
+function changeNum() {
+    var d = document.createElement("div");
+    d.onclick = changeNum;
+    d.innerHTML = "Div #" + 26 + " (click me!)";
+    container.appendChild(d);
+}
+
+changeNum();

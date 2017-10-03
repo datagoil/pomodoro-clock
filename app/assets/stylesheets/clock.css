@@ -38,6 +38,6 @@ height: 35%;
 #countdown {
     font-size: 40px;
 }
-.num {
+#numS, #numB {
     display: inline;
 }

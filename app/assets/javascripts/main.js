@@ -5,6 +5,7 @@ $(document).ready(function(){
           return;
         else
         $('#numS').text(oldVal + 1);
+      $('#countdown').text(oldVal + 1);
     });
    $(".up").off().on('click', function() {
            var oldVal = parseInt($("#numB").text(), 10);
@@ -28,43 +29,48 @@ $(document).ready(function(){
         else
         $('#numB').text(oldVal - 1);
     });
-    $("#start").on('click', function() {
+    $("#start").off().on('click', function() {
+          $('#countdown').text($('numS') + ":00");
           $('#numS').startSession();
 
     });
 $.fn.startSession = function() {
     var seconds = 0;
     var minutes = parseInt(this.text(), 10);
-    $(seconds).formatMinSec();
-    $(minutes).formatMinSec();
-    var readOut = minutes + ":" + seconds;
+    var readOut = formatToTens(minutes) + ":" + formatToTens(seconds);
+    $('#countdown').text("test");
 
-    $('#countdown').text(readOut);
-    alert(readOut);
-    setInterval(countDown(minutes, seconds), 1000);
+    setInterval(function down (min, sec) {
+        alert("what the hell");
+        newSec = parseInt(sec, 10);
+        newMin = parseInt(min, 10);
+        if (newSec > 0) {
+          newSec = newSec - 1;
+          var readOut = formatToTens(newMin) + ":" + formatToTens(newSec);
+          $('#countdown').text(readOut);
+        }
+        else if (newSec == 0) {
+            newMin = newMin - 1;
+            newSec = 59;
+            readOut = formatToTens(newMin) + ":" + formatToTens(newSec);
+            $('#countdown').text(readOut);
+
+        }
+
+        /**else if (minutes = 0) {
+
+        }**/
+    }, 1000);
+
+
+
 
 };
-function countDown (min, sec) {
-    var readOut = min + ":" + sec;
-    if (sec > 0) {
-      sec = sec - 1;
-      $('#countdown').text(readOut);
-    }
-    else if (sec = 0) {
-        min = min - 1;
-        sec = 59;
-        $('#countdown').text(readOut);
-    }
-    /**else if (minutes = 0) {
 
-    }**/
-};
 
-function formatMinSec (aValue) {
-    if (aValue < 10) {
-      aValue = "0" + aValue;
-    }
-    alert("code reached formatMinSec function");
+function formatToTens (aValue) {
+    aValue = aValue < 10 ? "0" + aValue : aValue;
+    return aValue;
 };
 
 });

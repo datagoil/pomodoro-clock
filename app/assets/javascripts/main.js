@@ -30,7 +30,8 @@ $(document).ready(function(){
         $('#numB').text(oldVal - 1);
     });
     $("#start").off().on('click', function() {
-          $('#countdown').text($('numS') + ":00");
+          var valN = $('#numS').text();
+          $('#countdown').text(valN + ":00");
           $('#numS').startSession();
 
     });
@@ -38,7 +39,7 @@ $.fn.startSession = function() {
     var seconds = 0;
     var minutes = parseInt(this.text(), 10);
     var readOut = formatToTens(minutes) + ":" + formatToTens(seconds);
-    $('#countdown').text("test");
+
 
     setInterval(function down (min, sec) {
         alert("what the hell");

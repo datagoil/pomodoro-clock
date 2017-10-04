@@ -1,5 +1,7 @@
 var newSec = 0;
 var newMin;
+var myVar;
+var valN;
 
 $(document).ready(function(){
    $(".upS").off().on('click', function() {     //off() b/c was increasing by 2
@@ -15,13 +17,21 @@ $(document).ready(function(){
            changeVal($('#numB'), $(".down"));
     });
     $("#start").off().on('click', function() {
-          var valN = $('#numS').text();
+          valN = $('#numS').text();
           $('#countdown').text(valN + ":00");
-           newMin = parseInt($('#numS').text(), 10)
+          newMin = valN;
           $('#numS').startSession();
     });
+    $('#pause').off().on('click', function() {
+          alert("pause button was hit");
+    });
+    $('#stop').off().on('click', function() {
+          clearInterval(myVar);
+          $('#countdown').text(valN + ":00");
+          newSec = 0;
+    });
 $.fn.startSession = function() {
-    var myVar = setInterval(function down () {
+    myVar = setInterval(function down () {
         if (newMin <= 0 && newSec <= 0 ) {
             $('#countdown').text("WHAAAA?");
             clearInterval(myVar);

@@ -39,21 +39,27 @@ $(document).ready(function(){
           $('#numS').startSession();
     });
 $.fn.startSession = function() {
-    setInterval(function down () {
-        if (newSec > 0) {
+    var myVar = setInterval(function down () {
+        if (newMin <= 0 && newSec <= 0 ) {
+            $('#countdown').text("WHAAAA?");
+            clearInterval(myVar);
+        }
+        else if (newSec > 0) {
           newSec = newSec - 1;
           var readOut = formatToTens(newMin) + ":" + formatToTens(newSec);
           $('#countdown').text(readOut);
         }
         else if (newSec == 0) {
+            if (newMin == 0) {
+              $('#countdown').text("00:00");
+              clearInterval(myVar);
+            }
             newMin = newMin - 1;
             newSec = 59;
             readOut = formatToTens(newMin) + ":" + formatToTens(newSec);
             $('#countdown').text(readOut);
         }
-        else if (newMin == 0 && newSec == 0 ) {
-            $('#countdown').text("WHAAAA?");
-        }
+
     }, 1000);
 };
 

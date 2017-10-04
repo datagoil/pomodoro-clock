@@ -38,9 +38,11 @@ $(document).ready(function(){
           $('#numS').text(newMin);
 
     });
+
 $.fn.startSession = function() {
     myVar = setInterval(function down () {
         if (newMin <= 0 && newSec <= 0 ) {
+            //*****
             $('#countdown').text("WHAAAA?");
             clearInterval(myVar);
         }
@@ -52,7 +54,17 @@ $.fn.startSession = function() {
         else if (newSec == 0) {
             if (newMin == 0) {
               $('#countdown').text("00:00");
-              clearInterval(myVar);
+              //clearInterval(myVar);
+              //none of this is being reached. try putting it here *****
+              alert("huh" + $(this) + $(this).attr("id"));
+              if ((this).attr("id") == "numS") {
+                  alert("Play and audio clip to take a Break");
+                  $('#numB').startSession();
+              }
+              else if ((this).attr("id") == "numB") {
+                  alert("Play and audio clip to get back to work");
+                  $('#numS').startSession();
+              }
             }
             newMin = newMin - 1;
             newSec = 59;

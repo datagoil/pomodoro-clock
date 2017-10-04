@@ -1,3 +1,6 @@
+var newSec = 0;
+var newMin;
+
 $(document).ready(function(){
    $(".upS").off().on('click', function() {     //off() b/c was increasing by 2
            var oldVal = parseInt($("#numS").text(), 10);
@@ -32,14 +35,11 @@ $(document).ready(function(){
     $("#start").off().on('click', function() {
           var valN = $('#numS').text();
           $('#countdown').text(valN + ":00");
+           newMin = parseInt($('#numS').text(), 10)
           $('#numS').startSession();
-
     });
 $.fn.startSession = function() {
     setInterval(function down () {
-        alert("what the hell");
-        var newSec = 0;
-        var newMin = parseInt($('#numS').text(), 10);
         if (newSec > 0) {
           newSec = newSec - 1;
           var readOut = formatToTens(newMin) + ":" + formatToTens(newSec);
@@ -50,17 +50,11 @@ $.fn.startSession = function() {
             newSec = 59;
             readOut = formatToTens(newMin) + ":" + formatToTens(newSec);
             $('#countdown').text(readOut);
-
         }
-
-        /**else if (minutes = 0) {
-
-        }**/
+        else if (newMin == 0 && newSec == 0 ) {
+            $('#countdown').text("WHAAAA?");
+        }
     }, 1000);
-
-
-
-
 };
 
 

@@ -1,3 +1,4 @@
+
 var newSec = 0;
 var newMin;
 var myVar;
@@ -94,14 +95,14 @@ function changeVal (aaa, bbb) {
           //else
         $(aaa).text(oldVal + 1);
           if (b == "upS") {
-              $('#countdown').text(oldVal + 1);
+              $('#countdown').text((oldVal + 1) + ":00");
           }
     }
     else if (b == "downS" || b == "down") {
       var oldVal = parseInt($(aaa).text(), 10);
           $(aaa).text(oldVal - 1);
             if (b == "downS") {
-              $('#countdown').text(oldVal - 1);
+              $('#countdown').text((oldVal - 1) + ":00");
             }
 
     }
@@ -115,4 +116,3 @@ function formatToTens (aValue) {
 };
 
 });
-

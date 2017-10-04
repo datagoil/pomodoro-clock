@@ -30,6 +30,14 @@ $(document).ready(function(){
           $('#countdown').text(valN + ":00");
           newSec = 0;
     });
+    $('#refresh').off().on('click', function() {
+          clearInterval(myVar);
+          newMin = 25;
+          newSec = 0;
+          $('#countdown').text(newMin + ":00");
+          $('#numS').text(newMin);
+
+    });
 $.fn.startSession = function() {
     myVar = setInterval(function down () {
         if (newMin <= 0 && newSec <= 0 ) {

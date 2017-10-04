@@ -2,6 +2,7 @@ var newSec = 0;
 var newMin;
 var myVar;
 var valN;
+var run = 1;
 
 $(document).ready(function(){
    $(".upS").off().on('click', function() {     //off() b/c was increasing by 2
@@ -17,10 +18,23 @@ $(document).ready(function(){
            changeVal($('#numB'), $(".down"));
     });
     $("#start").off().on('click', function() {
+                    alert("run is" + run);
+
+        if (run % 2 === 0) {
+          alert("running break");
+          valN = $('#numB').text();
+          $('#countdown').text(valN + ":00");
+          newMin = valN;
+          $('#numB').startSession();
+        }
+        else {
+          alert("running session");
           valN = $('#numS').text();
           $('#countdown').text(valN + ":00");
           newMin = valN;
           $('#numS').startSession();
+        }
+
     });
     $('#pause').off().on('click', function() {
           alert("pause button was hit");
@@ -36,14 +50,18 @@ $(document).ready(function(){
           newSec = 0;
           $('#countdown').text(newMin + ":00");
           $('#numS').text(newMin);
+          $('#numB').text(5);
 
     });
 
 $.fn.startSession = function() {
+                alert(run + " 1st check");
+
     myVar = setInterval(function down () {
         if (newMin <= 0 && newSec <= 0 ) {
-            //*****
-            $('#countdown').text("WHAAAA?");
+            run = run + 1;
+            $('#countdown').text("00:00");
+            alert(run + " 2nd check");
             clearInterval(myVar);
         }
         else if (newSec > 0) {
@@ -51,21 +69,14 @@ $.fn.startSession = function() {
           var readOut = formatToTens(newMin) + ":" + formatToTens(newSec);
           $('#countdown').text(readOut);
         }
-        else if (newSec == 0) {
-            if (newMin == 0) {
-              $('#countdown').text("00:00");
-              //clearInterval(myVar);
-              //none of this is being reached. try putting it here *****
-              alert("huh" + $(this) + $(this).attr("id"));
-              if ((this).attr("id") == "numS") {
-                  alert("Play and audio clip to take a Break");
-                  $('#numB').startSession();
-              }
-              else if ((this).attr("id") == "numB") {
-                  alert("Play and audio clip to get back to work");
-                  $('#numS').startSession();
-              }
-            }
+        else if (newMin == 0 && newSec == 0) {
+            $('#countdown').text("00:00");
+            run = run + 1;
+                        alert(run + " 3rd check");
+
+            clearInterval(myVar);
+        }
+        else {
             newMin = newMin - 1;
             newSec = 59;
             readOut = formatToTens(newMin) + ":" + formatToTens(newSec);

@@ -3,34 +3,16 @@ var newMin;
 
 $(document).ready(function(){
    $(".upS").off().on('click', function() {     //off() b/c was increasing by 2
-           var oldVal = parseInt($("#numS").text(), 10);
-        if (oldVal <= 0)
-          return;
-        else
-        $('#numS').text(oldVal + 1);
-      $('#countdown').text(oldVal + 1);
+           changeVal($('#numS'), $(".upS"));
     });
    $(".up").off().on('click', function() {
-           var oldVal = parseInt($("#numB").text(), 10);
-        if (oldVal <= 0)
-          return;
-        else
-        $('#numB').text(oldVal + 1);
+            changeVal($('#numB'), $(".up"));
     });
    $(".downS").off().on('click', function() {
-           var oldVal = parseInt($("#numS").text(), 10);
-        if (oldVal <= 0)
-          return;
-        else
-          $('#numS').text(oldVal - 1);
+          changeVal($('#numS'), $(".downS"));
     });
    $(".down").off().on('click', function() {
-           var oldVal = parseInt($("#numB").text(), 10);
-        if (oldVal <= 0) {
-          return;
-        }
-        else
-        $('#numB').text(oldVal - 1);
+           changeVal($('#numB'), $(".down"));
     });
     $("#start").off().on('click', function() {
           var valN = $('#numS').text();
@@ -62,7 +44,29 @@ $.fn.startSession = function() {
 
     }, 1000);
 };
+function changeVal (aaa, bbb) {
+    var b = bbb.attr("class");
+    if (b == "upS" || b == "up") {
+        var oldVal = parseInt($(aaa).text(), 10);
+          //if (oldVal <= 0)
+            //return;
+          //else
+        $(aaa).text(oldVal + 1);
+          if (b == "upS") {
+              $('#countdown').text(oldVal + 1);
+          }
+    }
+    else if (b == "downS" || b == "down") {
+      var oldVal = parseInt($(aaa).text(), 10);
+          $(aaa).text(oldVal - 1);
+            if (b == "downS") {
+              $('#countdown').text(oldVal - 1);
+            }
 
+    }
+
+
+  };
 
 function formatToTens (aValue) {
     aValue = aValue < 10 ? "0" + aValue : aValue;

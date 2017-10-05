@@ -7,7 +7,7 @@ var run = 1;
 var readOut;
 var ajourn = new Audio('break');
 var session = new Audio('session');
-var clickCount = 1;
+var pauseValue;
 
 
 $(document).ready(function(){
@@ -25,44 +25,54 @@ $(document).ready(function(){
   });
   $("#start").off().on('click', function() {
     pauseAudio();
-    if (run % 2 === 0) {
-      valN = $('#numB').text();
-      $('#sessBreakType').text("On Break");
-      $('#countdown').text(valN + ":00");
-      newMin = valN;
-      $('#numB').startSession();
-    }
-    else {
-      valN = $('#numS').text();
-      $('#sessBreakType').text("Working");
-      $('#countdown').text(valN + ":00");
-      newMin = valN;
-      $('#numS').startSession();
-    }
-  });
-  $('#pause').off().on('click', function() {
-    clearInterval(myVar);
-    pauseAudio();
-    $('#countdown').text(readOut);
-    if (clickCount % 2 === 0) {
+    $('#pause').css( "pointer-events", "auto" );
+    if (pauseValue == 1){
         if (run % 2 == 0) {
           $('#numB').startSession();
         }
         else {
           $('#numS').startSession();
         }
+        resetPauseButton();
     }
-    ++clickCount;
+    else {
+      if (run % 2 === 0) {
+        valN = $('#numB').text();
+        $('#sessBreakType').text("On Break");
+        $('#countdown').text(valN + ":00");
+        newMin = valN;
+        $('#numB').startSession();
+      }
+      else {
+        valN = $('#numS').text();
+        $('#sessBreakType').text("Working");
+        $('#countdown').text(valN + ":00");
+        newMin = valN;
+        $('#numS').startSession();
+      }
+    }
+  });
+  $('#pause').off().on('click', function() {
+    $('#start').css( "pointer-events", "auto" );
+    clearInterval(myVar);
+    pauseAudio();
+    $('#countdown').text(readOut);
+    $('#pause').css( "pointer-events", "none" );
+    pauseValue = 1;
   });
   $('#stop').off().on('click', function() {
     pauseAudio();
     clearInterval(myVar);
+    makeClickable()
+    resetPauseButton();
     $('#countdown').text(valN + ":00");
     newSec = 0;
   });
   $('#refresh').off().on('click', function() {
     pauseAudio();
     clearInterval(myVar);
+    makeClickable()
+    resetPauseButton();
     newMin = 25;
     newSec = 0;
     run = 1;
@@ -72,12 +82,10 @@ $(document).ready(function(){
   });
 
    $.fn.startSession = function() {
+    stillTheClicks();
     myVar = setInterval(function down () {
       if (newMin <= 0 && newSec <= 0 ) {
-        run = run + 1;
-        $('#countdown').text("00:00");
-        playAudio();
-        clearInterval(myVar);
+        exitSession ()
       }
       else if (newSec > 0) {
         newSec = newSec - 1;
@@ -85,10 +93,7 @@ $(document).ready(function(){
         $('#countdown').text(readOut);
       }
       else if (newMin == 0 && newSec == 0) {
-        $('#countdown').text("00:00");
-        run = run + 1;
-        playAudio();
-        clearInterval(myVar);
+        exitSession ()
       }
       else {
         newMin = newMin - 1;
@@ -135,5 +140,31 @@ $(document).ready(function(){
     session.pause();
     ajourn.currentTime = 0;
     session.currentTime = 0;
+   };
+   function resetPauseButton () {
+    pauseValue = 0;
+    $('#pause').css( "pointer-events", "auto" );
+   };
+   function stillTheClicks () {
+      $('.upS').css( "pointer-events", "none" );
+      $('.up').css( "pointer-events", "none" );
+      $('.downS').css( "pointer-events", "none" );
+      $('.down').css( "pointer-events", "none" );
+      $('#start').css( "pointer-events", "none" );
+   }
+   function makeClickable() {
+      $('.upS').css( "pointer-events", "auto" );
+      $('.up').css( "pointer-events", "auto" );
+      $('.downS').css( "pointer-events", "auto" );
+      $('.down').css( "pointer-events", "auto" );
+      $('#start').css( "pointer-events", "auto" );
+   }
+   function exitSession () {
+      run = run + 1;
+      $('#countdown').text("00:00");
+      playAudio();
+      clearInterval(myVar);
+      $('#start').css( "pointer-events", "auto" );
+      $('#pause').css("pointer-events", "none");
    };
 });

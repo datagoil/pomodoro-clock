@@ -7,6 +7,7 @@ var run = 1;
 var readOut;
 var ajourn = new Audio('break');
 var session = new Audio('session');
+var clickCount = 1;
 
 
 $(document).ready(function(){
@@ -43,12 +44,15 @@ $(document).ready(function(){
     clearInterval(myVar);
     pauseAudio();
     $('#countdown').text(readOut);
-    if (run % 2 == 0) {
-     $('#numB').startSession();
+    if (clickCount % 2 === 0) {
+        if (run % 2 == 0) {
+          $('#numB').startSession();
+        }
+        else {
+          $('#numS').startSession();
+        }
     }
-    else {
-     $('#numS').startSession();
-    }
+    ++clickCount;
   });
   $('#stop').off().on('click', function() {
     pauseAudio();
@@ -119,8 +123,6 @@ $(document).ready(function(){
         return aValue;
    };
    function playAudio () {
-       ajourn.currentTime = 0;
-       session.currentTime = 0;
        if (run % 2 == 0) {
         ajourn.play();
        }
@@ -131,5 +133,7 @@ $(document).ready(function(){
    function pauseAudio(){
     ajourn.pause();
     session.pause();
+    ajourn.currentTime = 0;
+    session.currentTime = 0;
    };
 });

@@ -4,7 +4,7 @@ var newMin;
 var myVar;
 var valN;
 var run = 1;
-          var readOut;
+var readOut;
 
 
 $(document).ready(function(){
@@ -77,6 +77,8 @@ $.fn.startSession = function() {
             run = run + 1;
             $('#countdown').text("00:00");
             alert(run + " 2nd check");
+            alert($('#session').text());
+            playAudio();
             clearInterval(myVar);
         }
         else if (newSec > 0) {
@@ -88,7 +90,9 @@ $.fn.startSession = function() {
             $('#countdown').text("00:00");
             run = run + 1;
                         alert(run + " 3rd check");
+                                    alert($('#break').text());
 
+            playAudio();
             clearInterval(myVar);
         }
         else {
@@ -127,6 +131,17 @@ function changeVal (aaa, bbb) {
 function formatToTens (aValue) {
     aValue = aValue < 10 ? "0" + aValue : aValue;
     return aValue;
+};
+
+function playAudio () {
+    setTimeout(function () {
+            if (run % 2 == 0) {
+        $('#session')[0].play();
+        }
+    else {
+        $('#break')[0].play();
+    }
+}, 1);
 };
 
 });

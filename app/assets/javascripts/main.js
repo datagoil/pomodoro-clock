@@ -4,6 +4,8 @@ var newMin;
 var myVar;
 var valN;
 var run = 1;
+          var readOut;
+
 
 $(document).ready(function(){
    $(".upS").off().on('click', function() {     //off() b/c was increasing by 2
@@ -24,6 +26,7 @@ $(document).ready(function(){
         if (run % 2 === 0) {
           alert("running break");
           valN = $('#numB').text();
+          $('#sessBreakType').text("On Break");
           $('#countdown').text(valN + ":00");
           newMin = valN;
           $('#numB').startSession();
@@ -31,6 +34,7 @@ $(document).ready(function(){
         else {
           alert("running session");
           valN = $('#numS').text();
+          $('#sessBreakType').text("Working");
           $('#countdown').text(valN + ":00");
           newMin = valN;
           $('#numS').startSession();
@@ -39,6 +43,15 @@ $(document).ready(function(){
     });
     $('#pause').off().on('click', function() {
           alert("pause button was hit");
+          clearInterval(myVar);
+          $('#countdown').text(readOut);
+            if (run % 2 == 0) {
+               $('#numB').startSession();
+            }
+            else {
+               $('#numS').startSession();
+            }
+
     });
     $('#stop').off().on('click', function() {
           clearInterval(myVar);
@@ -49,6 +62,7 @@ $(document).ready(function(){
           clearInterval(myVar);
           newMin = 25;
           newSec = 0;
+          run = 1;
           $('#countdown').text(newMin + ":00");
           $('#numS').text(newMin);
           $('#numB').text(5);
@@ -67,7 +81,7 @@ $.fn.startSession = function() {
         }
         else if (newSec > 0) {
           newSec = newSec - 1;
-          var readOut = formatToTens(newMin) + ":" + formatToTens(newSec);
+          readOut = formatToTens(newMin) + ":" + formatToTens(newSec);
           $('#countdown').text(readOut);
         }
         else if (newMin == 0 && newSec == 0) {

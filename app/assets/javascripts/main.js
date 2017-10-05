@@ -5,11 +5,13 @@ var myVar;
 var valN;
 var run = 1;
 var readOut;
+var ajourn = new Audio('break');
+var session = new Audio('session');
 
 
 $(document).ready(function(){
    $(".upS").off().on('click', function() {     //off() b/c was increasing by 2
-           changeVal($('#numS'), $(".upS"));
+            changeVal($('#numS'), $(".upS"));
     });
    $(".up").off().on('click', function() {
             changeVal($('#numB'), $(".up"));
@@ -21,10 +23,9 @@ $(document).ready(function(){
            changeVal($('#numB'), $(".down"));
     });
     $("#start").off().on('click', function() {
-                    alert("run is" + run);
-
+        ajourn.pause();
+        session.pause();
         if (run % 2 === 0) {
-          alert("running break");
           valN = $('#numB').text();
           $('#sessBreakType').text("On Break");
           $('#countdown').text(valN + ":00");
@@ -32,7 +33,6 @@ $(document).ready(function(){
           $('#numB').startSession();
         }
         else {
-          alert("running session");
           valN = $('#numS').text();
           $('#sessBreakType').text("Working");
           $('#countdown').text(valN + ":00");
@@ -42,7 +42,6 @@ $(document).ready(function(){
 
     });
     $('#pause').off().on('click', function() {
-          alert("pause button was hit");
           clearInterval(myVar);
           $('#countdown').text(readOut);
             if (run % 2 == 0) {
@@ -70,14 +69,10 @@ $(document).ready(function(){
     });
 
 $.fn.startSession = function() {
-                alert(run + " 1st check");
-
     myVar = setInterval(function down () {
         if (newMin <= 0 && newSec <= 0 ) {
             run = run + 1;
             $('#countdown').text("00:00");
-            alert(run + " 2nd check");
-            alert($('#session').text());
             playAudio();
             clearInterval(myVar);
         }
@@ -89,9 +84,6 @@ $.fn.startSession = function() {
         else if (newMin == 0 && newSec == 0) {
             $('#countdown').text("00:00");
             run = run + 1;
-                        alert(run + " 3rd check");
-                                    alert($('#break').text());
-
             playAudio();
             clearInterval(myVar);
         }
@@ -134,14 +126,14 @@ function formatToTens (aValue) {
 };
 
 function playAudio () {
-    setTimeout(function () {
-            if (run % 2 == 0) {
-        $('#session')[0].play();
+   ajourn.currentTime = 0;
+   session.currentTime = 0;
+   if (run % 2 == 0) {
+        ajourn.play();
         }
     else {
-        $('#break')[0].play();
+         session.play();
     }
-}, 1);
 };
 
 });

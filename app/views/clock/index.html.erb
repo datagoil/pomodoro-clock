@@ -2,8 +2,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 </head>
-<body>
+<body class="backgroundFlash">
     <div class="container">
         <div><center><h1>Pomodoro Clock</h1></center></div>
     <div class="control">
@@ -29,6 +30,10 @@
 
     <div class="countdown">
         <table>
+    <div class="popup">
+    <span class="popuptext" id="breakPopup">It is time for a break.<br>Press play to begin the countdown and enjoy<br>a short retreat.</span>
+    <span class="popuptext" id="workPopup">It is time to resume working.<br>Press play to begin your work session.</span>
+    </div>
   <tr>
     <th><img src="/assets/start-button.png" id="start"></th>
     <th><img src="/assets/refresh-button.png" id="refresh"></th>
@@ -44,6 +49,7 @@
       <tr>
     <th><img src="/assets/pause-button.png" id="pause"></th>
     <th><img src="/assets/stop-button.png" id="stop"></th>
+      </tr>
  </table>
 </div>
 </div>

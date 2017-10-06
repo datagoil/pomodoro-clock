@@ -8,7 +8,7 @@ var readOut;
 var ajourn = new Audio('break');
 var session = new Audio('session');
 var pauseValue;
-
+var flashVar;
 
 $(document).ready(function(){
   $(".upS").off().on('click', function() {     //off() b/c was increasing by 2
@@ -24,7 +24,7 @@ $(document).ready(function(){
      changeVal($('#numB'), $(".down"));
   });
   $("#start").off().on('click', function() {
-    pauseAudio();
+    stopAudioFlashAndPopup();
     $('#pause').css( "pointer-events", "auto" );
     if (pauseValue == 1){
         if (run % 2 == 0) {
@@ -55,21 +55,21 @@ $(document).ready(function(){
   $('#pause').off().on('click', function() {
     $('#start').css( "pointer-events", "auto" );
     clearInterval(myVar);
-    pauseAudio();
+    stopAudioFlashAndPopup();
     $('#countdown').text(readOut);
     $('#pause').css( "pointer-events", "none" );
     pauseValue = 1;
   });
   $('#stop').off().on('click', function() {
-    pauseAudio();
+    stopAudioFlashAndPopup();
     clearInterval(myVar);
-    makeClickable()
+    $('#start').css( "pointer-events", "auto" );
     resetPauseButton();
     $('#countdown').text(valN + ":00");
     newSec = 0;
   });
   $('#refresh').off().on('click', function() {
-    pauseAudio();
+    stopAudioFlashAndPopup();
     clearInterval(myVar);
     makeClickable()
     resetPauseButton();
@@ -127,19 +127,27 @@ $(document).ready(function(){
         aValue = aValue < 10 ? "0" + aValue : aValue;
         return aValue;
    };
-   function playAudio () {
+   function playAudioAndPopup() {
        if (run % 2 == 0) {
         ajourn.play();
+        $('#breakPopup').toggleClass("show", true);
        }
        else {
         session.play();
+        $('#workPopup').toggleClass("show", true);
        }
    };
-   function pauseAudio(){
+   function stopAudioFlashAndPopup(){
     ajourn.pause();
     session.pause();
     ajourn.currentTime = 0;
     session.currentTime = 0;
+    clearInterval(flashVar);
+    if ($('body').attr('class') != "backgroundFlash"){
+        $('body').toggleClass("backgroundFlash", true);
+    }
+    $('#breakPopup').toggleClass("show", false);
+    $('#workPopup').toggleClass("show", false);
    };
    function resetPauseButton () {
     pauseValue = 0;
@@ -162,9 +170,12 @@ $(document).ready(function(){
    function exitSession () {
       run = run + 1;
       $('#countdown').text("00:00");
-      playAudio();
+      playAudioAndPopup();
       clearInterval(myVar);
       $('#start').css( "pointer-events", "auto" );
       $('#pause').css("pointer-events", "none");
-   };
+      flashVar = setInterval(function(){
+          $('body').toggleClass('backgroundFlash');
+      },500);
+    };
 });

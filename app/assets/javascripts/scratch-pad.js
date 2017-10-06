@@ -161,3 +161,18 @@ while (minutes > 0) {
 
 
 
+    $("#start").off().on('click', function() {
+          alert("huh" + $(this) + $(this).attr("id"));
+              if ((this).attr("id") == "numS") {
+
+              }
+              else if ((this).attr("id") == "numB") {
+                  alert("Play and audio clip to get back to work");
+                  $('#numS').startSession();
+              }
+          valN = $('#numS').text();
+          $('#countdown').text(valN + ":00");
+          newMin = valN;
+          $('#numS').startSession();
+          alert("huh" + $(this) + $(this).attr("id"));
+    });

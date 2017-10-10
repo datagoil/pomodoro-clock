@@ -1,10 +1,6 @@
 * {
   box-sizing: border-box;
-
 }
-img {
-
-  }
 .control img {
   width: 40%;
 }
@@ -20,11 +16,6 @@ body {
 table {
     color: white;
     width:100%;
-  }
-td th {
-  -webkit-column-break-inside: avoid;
-          page-break-inside: avoid;
-               break-inside: avoid;
 }
 td {
   text-align: center;
@@ -32,18 +23,18 @@ td {
 th {
     padding-bottom: 0px;
     padding-top: 0px;
-}h1 {
-
+}
+h1 {
     font-weight: bold;
 }
 h2 {
     margin-bottom: 5px;
     margin-top: 5px;
     font-size: 4vw;
-  }
+}
 #sessBreakType {
     margin-top: 0px;
-  }
+}
 .container {
   width: 75%;
   margin: auto;
@@ -60,7 +51,6 @@ border-radius: 15px;
 height: 35%;
 background-color: black;
 border-radius: 15px;
-
 }
 #countdown {
     font-size: 5vw;

@@ -1,18 +1,46 @@
 * {
   box-sizing: border-box;
 }
+.container {
+  width: 75%;
+  margin: auto;
+  font-family: 'Josefin Sans', sans-serif;
+  max-width: 300px;
+}
+/*div that holds up/down buttons to set clock*/
+.control {
+height: 12%;
+margin-bottom: 10px;
+background-color: black;
+border-radius: 15px;
+}
+/*div that holds countdown and control buttons*/
+.countdown {
+height: 35%;
+background-color: black;
+border-radius: 15px;
+}
+/*id for actual countdown/timer*/
+#countdown {
+    font-size: 5vw;
+}
+/*sizes the up/down arrows*/
 .control img {
   width: 40%;
 }
+/*sizes control buttons*/
 #start, #refresh, #pause, #stop {
   width: 25%;
 }
+/*background defaut color*/
 body.backgroundFlash {
   background-color: grey;
 }
+/*background color when flashing*/
 body {
     background-color: red;
 }
+/*these style up/down buttons and readout*/
 table {
     color: white;
     width:100%;
@@ -32,40 +60,22 @@ h2 {
     margin-top: 5px;
     font-size: 4vw;
 }
+/*allows changes in h2 from 'session' to 'break'*/
 #sessBreakType {
     margin-top: 0px;
 }
-.container {
-  width: 75%;
-  margin: auto;
-  font-family: 'Josefin Sans', sans-serif;
-  max-width: 300px;
-}
-.control {
-height: 12%;
-margin-bottom: 10px;
-background-color: black;
-border-radius: 15px;
-}
-.countdown {
-height: 35%;
-background-color: black;
-border-radius: 15px;
-}
-#countdown {
-    font-size: 5vw;
-}
+/*in .control, give id to 'session' or 'break' arrows and counter display*/
 #numS, #numB {
     display: inline;
     font-size: 4vw;
 }
+/*pop up instructions from https://www.w3schools.com/howto/howto_js_popup.asp*/
 /* Popup container */
 .popup {
     position: relative;
     display: inline-block;
     cursor: pointer;
 }
-
 /* The actual popup (appears on top) */
 .popup .popuptext {
     visibility: hidden;
@@ -81,7 +91,6 @@ border-radius: 15px;
     left: 50%;
     margin-left: -80px;
 }
-
 /* Popup arrow */
 .popup .popuptext::after {
     content: "";
@@ -93,20 +102,17 @@ border-radius: 15px;
     border-style: solid;
     border-color: #555 transparent transparent transparent;
 }
-
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s
 }
-
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
     }
-
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity:1 ;}
